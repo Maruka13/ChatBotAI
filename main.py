@@ -20,5 +20,5 @@ st.write("# Chatbot com IA")  # formato markdown
 
 texto_user = st.chat_input("Digite sua mensagem")  # armazena a msg na variavel texte_user
 
-print(texto_user)
-
+if texto_user: 
+    print(texto_user)
