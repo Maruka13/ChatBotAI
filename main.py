@@ -15,18 +15,22 @@ if not "lista_mensagens" in st.session_state:  # se lista de msg existe/nao exis
 
 texto_user = st.chat_input("Digite sua mensagem")  # armazena a msg na variavel texte_user
 
+for mensagem in st.session_state["lista_mensagens"]:  # para cada msg na lista de msg armazenadas
+    role = mensagem["role"]
+    content = mensagem["content"]  
+    st.chat_message(role).write(content)  # mostra a msg na tela conforme o role (user/assistant/system)
+
 if texto_user: 
    st.chat_message("user").write(texto_user)
    mensagem_user = {"role": "user", "content": texto_user}
    st.session_state["lista_mensagens"].append(mensagem_user)  # adiciona a msg do user na lista de msgs
 
-   resposta_ia = "Você me perguntou: " + texto_user # concatenação simples de 2 textos
+   resposta_ia = "Você disse: " + texto_user # concatenação simples de 2 textos
 
    st.chat_message("assistant").write(resposta_ia)
    mensagem_ia = {"role": "assistant", "content": resposta_ia}
    st.session_state["lista_mensagens"].append(mensagem_ia)  # adiciona a msg da ia na lista de msgs
 
-print(st.session_state["lista_mensagens"])  # mostra no terminal do streamlit todas as msgs armazenadas
 
    #Anotações
 
@@ -43,3 +47,7 @@ print(st.session_state["lista_mensagens"])  # mostra no terminal do streamlit to
    # st.chat_message("assistant").write() aparece a msg com icone de robo
    # st.chat_message("Manu").write() aparece com a letra inicial do usuario
    # st.session_state: cookies do navegador para armazenar dados temporarios, já existe a lista de msg?
+   # print(st.session_state["lista_mensagens"]) mostra no terminal do streamlit todas as msgs armazenadas
+   # Hugging Face - plataforma de modelos de IA, hospeda modelos de ML, datasets e apps de IA sem usar o openai
+   # Gradio - biblioteca para criar interfaces web para modelos de ML, fácil de usar e integrar
+
