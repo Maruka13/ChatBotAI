@@ -13,20 +13,20 @@ st.write("# Chatbot com IA")  # formato markdown
 if not "lista_mensagens" in st.session_state:  # se lista de msg existe/nao existe dentro dos cookies
     st.session_state["lista_mensagens"] = []   # cria uma lista vazia se nao tem msg anteriores, se já existe nao faz nada
 
-
-
-lista_mensagens = []  # lista vazia para armazenar as mensagens
-
 texto_user = st.chat_input("Digite sua mensagem")  # armazena a msg na variavel texte_user
 
 if texto_user: 
    st.chat_message("user").write(texto_user)
+   mensagem_user = {"role": "user", "content": texto_user}
+   st.session_state["lista_mensagens"].append(mensagem_user)  # adiciona a msg do user na lista de msgs
 
    resposta_ia = "Você me perguntou: " + texto_user # concatenação simples de 2 textos
+
    st.chat_message("assistant").write(resposta_ia)
+   mensagem_ia = {"role": "assistant", "content": resposta_ia}
+   st.session_state["lista_mensagens"].append(mensagem_ia)  # adiciona a msg da ia na lista de msgs
 
-
-
+print(st.session_state["lista_mensagens"])  # mostra no terminal do streamlit todas as msgs armazenadas
 
    #Anotações
 
