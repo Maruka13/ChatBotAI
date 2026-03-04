@@ -40,8 +40,7 @@ if texto_user:
        messages=st.session_state["lista_mensagens"],
        model="gpt-4o",
    )
-   print(resposta_ia) # mostra a resposta completa da IA no terminal do streamlit
-   texto_resposta_ia = "Você disse: " + texto_user # concatenação simples de 2 textos
+   texto_resposta_ia = resposta_ia.choices[0].message.content
 
    st.chat_message("assistant").write(resposta_ia)
    mensagem_ia = {"role": "assistant", "content": resposta_ia}
