@@ -8,6 +8,15 @@
 
 import streamlit as st
 
+import os
+from dotenv import load_dotenv
+from openai import OpenAI
+
+load_dotenv() # carrega as variáveis do arquivo .env
+chave = os.getenv("OPENAI_API_KEY")
+
+modelo_ia = OpenAI(api_key=chave)  # inicializa a IA com a chave da API
+
 st.write("# Chatbot com IA")  # formato markdown
 
 if not "lista_mensagens" in st.session_state:  # se lista de msg existe/nao existe dentro dos cookies
@@ -50,4 +59,5 @@ if texto_user:
    # print(st.session_state["lista_mensagens"]) mostra no terminal do streamlit todas as msgs armazenadas
    # Hugging Face - plataforma de modelos de IA, hospeda modelos de ML, datasets e apps de IA sem usar o openai
    # Gradio - biblioteca para criar interfaces web para modelos de ML, fácil de usar e integrar
+   # pip install python-dotenv para instalar a biblioteca que carrega variaveis de ambiente do arquivo .env
 
