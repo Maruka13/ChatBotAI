@@ -42,8 +42,8 @@ if texto_user:
    )
    texto_resposta_ia = resposta_ia.choices[0].message.content
 
-   st.chat_message("assistant").write(resposta_ia)
-   mensagem_ia = {"role": "assistant", "content": resposta_ia}
+   st.chat_message("assistant").write(texto_resposta_ia)
+   mensagem_ia = {"role": "assistant", "content": texto_resposta_ia}
    st.session_state["lista_mensagens"].append(mensagem_ia)  # adiciona a msg da ia na lista de msgs
 
 
