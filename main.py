@@ -7,6 +7,10 @@ from openai import OpenAI
 load_dotenv() # carrega as variáveis do arquivo .env
 chave = os.getenv("OPENAI_API_KEY")
 
+if not chave:
+    st.error("Erro: OPENAI_API_KEY não encontrada no arquivo .env")
+    st.stop()
+    
 modelo_ia = OpenAI(api_key=chave)  # inicializa a IA com a chave da API
 
 st.write("# Chatbot com IA")  # formato markdown
